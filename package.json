@@ -1,0 +1,25 @@
+{
+  "name": "lasavo-full-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "migrate": "psql $DATABASE_URL -f db/migrations/init.sql || true",
+    "worker": "node -r ts-node/register lib/pickupWorker.ts"
+  },
+  "dependencies": {
+    "next": "13.4.10",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "pg": "^8.11.0",
+    "jsonwebtoken": "^9.0.0",
+    "bullmq": "^1.78.0",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.6.2"
+  }
+}
