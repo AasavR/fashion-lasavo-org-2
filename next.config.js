@@ -2,13 +2,10 @@
 const nextConfig = {
   experimental: { appDir: true },
   reactStrictMode: true,
-  transpilePackages: ['undici'],
   webpack: (config, { isServer }) => {
+    // Exclude undici from client-side bundling
     if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        undici: false,
-      };
+      config.externals = [...(config.externals || []), 'undici'];
     }
     return config;
   },
