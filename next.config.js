@@ -1,11 +1,9 @@
-// next.config.js
-const withTM = require("next-transpile-modules")(["undici"]);
-
-module.exports = withTM({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   experimental: { appDir: true },
   reactStrictMode: true,
+  transpilePackages: ['undici'],
   webpack: (config, { isServer }) => {
-    // Optional safeguard: don’t try to polyfill undici on the client
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -14,4 +12,6 @@ module.exports = withTM({
     }
     return config;
   },
-});
+};
+
+module.exports = nextConfig;
